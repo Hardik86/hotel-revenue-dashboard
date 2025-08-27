@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'">
+  <title>Hotel Revenue Dashboard — Hardik Hariyani</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="wrap">
+      <h1>Hotel Revenue Dashboard</h1>
+      <p class="byline">Built by <strong>Hardik Hariyani</strong></p>
+    </div>
+  </header>
+
+  <main class="wrap" id="main" role="main">
+    <!-- Inputs -->
+    <section class="card" aria-labelledby="perfHeading">
+      <h2 id="perfHeading">Your Hotel Performance</h2>
+      <form id="revenueForm" aria-label="Hotel performance form">
+        <div class="grid">
+          <label>
+            Rooms Available
+            <input id="roomsAvailable" type="number" inputmode="numeric" min="0" required />
+          </label>
+          <label>
+            Rooms Sold (period)
+            <input id="roomsSold" type="number" inputmode="numeric" min="0" required />
+          </label>
+          <label>
+            Your Nightly Rate ($)
+            <input id="yourRate" type="number" inputmode="decimal" min="0" step="0.01" required />
+          </label>
+          <label>
+            Room Revenue ($)
+            <input id="roomRevenue" type="number" inputmode="decimal" min="0" step="0.01" required />
+          </label>
+          <label>
+            Total Revenue ($)
+            <input id="totalRevenue" type="number" inputmode="decimal" min="0" step="0.01" required />
+          </label>
+          <label>
+            Gross Operating Profit ($)
+            <input id="grossProfit" type="number" inputmode="decimal" min="0" step="0.01" required />
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="calcBtn">Calculate metrics</button>
+          <button type="button" id="clearBtn" class="secondary">Clear inputs</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Competitors -->
+    <section class="card" aria-labelledby="compHeading">
+      <h2 id="compHeading">Competitor Prices (editable)</h2>
+      <div class="row">
+        <label style="flex:1">
+          Name
+          <input id="compName" type="text" placeholder="Hotel name">
+        </label>
+        <label style="width:170px">
+          Price ($)
+          <input id="compPrice" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 129.99">
+        </label>
+        <div style="align-self:end">
+          <button id="addComp" type="button">Add competitor</button>
+        </div>
+      </div>
+
+      <div id="competitorList" class="table-wrap" aria-live="polite"></div>
+    </section>
+
+    <!-- Simulation -->
+    <section class="card" aria-labelledby="simHeading">
+      <h2 id="simHeading">What-if Price Simulation</h2>
+      <div class="grid">
+        <label>
+          Hypothetical New Rate ($)
+          <input id="hypoRate" type="number" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 135.00">
+        </label>
+        <label>
+          Price Elasticity (e.g. -0.5)
+          <input id="elasticity" type="number" inputmode="decimal" step="0.01" value="-0.5">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="simulateBtn" type="button">Run simulation</button>
+        <button id="resetSim" type="button" class="secondary">Reset sim</button>
+      </div>
+      <div id="simulationResults" aria-live="polite"></div>
+    </section>
+
+    <!-- Results -->
+    <section class="card" aria-labelledby="resultsHeading">
+      <h2 id="resultsHeading">Calculated Results & Recommendations</h2>
+      <div id="results" aria-live="polite"></div>
+      <div class="actions" style="margin-top:0.75rem;">
+        <button id="copyReport" type="button">📋 Copy report (to clipboard)</button>
+        <button id="openReport" type="button" class="secondary">Open report in new tab</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <small>© 2025 <strong>Hardik Hariyani</strong> — Hotel Revenue Dashboard (client-side only)</small>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
